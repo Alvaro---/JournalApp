@@ -9,6 +9,12 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
         createValidators();
     }, [formState])
 
+    //RECARGAR EN CASO DE QUE SE CAMBIE EL ESTADO INICIAL
+    useEffect(() => {
+        setFormState(initialForm);
+    }, [initialForm])
+
+
     const isFormValid = useMemo(() => {
         for (const formValue of Object.keys(formValidation)) {
             if (formValidation[formValue] != null) return false;
